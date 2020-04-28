@@ -46,15 +46,16 @@ export default class ArtContainer extends Component {
 			console.log('createArtResponse', createArtResponse);
 
 			const createArtJson = await createArtResponse.json()
-			// if(createArtResponse.status === 201) {
 			console.log(createArtJson.data);
+			
+			if(createArtResponse.status === 201) {
 				const art = this.state.art
 				art.push(createArtJson.data)
 				this.setState({
 					art: art
 				})
 
-//			}
+			}
 
 		} catch (error) {
 			console.error(error)

@@ -30,19 +30,43 @@ export default class NewArtForm extends Component {
 				<Form onSubmit={this.handleSubmit}>
 					<Form.Field required>
 						<label>title</label>
-						<Input name='name' placeholder='artistworks name' />
+						<Input 
+							type='text'
+							name='name' 
+							value={this.state.name} 
+							placeholder='artistworks name'
+							onChange={this.handleChange}
+						/>
 					</Form.Field>
 					<Form.Field required>
 						<label>arist</label>
-						<Input name='artist' placeholder='artists name' />
+						<Input 
+							type='text'
+							name='artist'
+							value={this.state.artist}  
+							placeholder='artists name' 
+							onChange={this.handleChange}
+						/>
 					</Form.Field>
 					<Form.Field required>
 						<label>year created</label>
-						<Input name='year_made' placeholder='YYYY' />
+						<Input 
+							type='text'
+							name='year_made' 
+							value={this.state.year_made} 
+							placeholder='YYYY' 
+							onChange={this.handleChange}
+						/>
 					</Form.Field>
 					<Form.Field required>
 						<label>current residence</label>
-						<Input year='current_residence' placeholder='where' />
+						<Input 
+							type='text'
+							name='current_residence' 
+							value={this.state.current_residence} 
+							placeholder='where' 
+							onChange={this.handleChange}
+						/>
 					</Form.Field>
 					<Button type='submit'>Add art to database</Button>
 				</Form>
