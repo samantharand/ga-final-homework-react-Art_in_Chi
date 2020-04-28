@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ArtList from '../ArtList'
+import NewArtForm from '../NewArtForm'
 
 export default class ArtContainer extends Component {
 	constructor(props) {
@@ -30,11 +31,31 @@ export default class ArtContainer extends Component {
 		}
 	}
 
+	createArt = async (artToCreate) => {
+		try {
+			
+			const url = process.env.REACT_APP_API_URL + '/api/v1/art/'
+			const createArtResponse = await fetch(url, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(artToCreate)
+			})
+			console.log('createArtResponse', createArtResponse);
+
+
+		} catch (error) {
+			console.error(error)
+		}
+	}
+
 	render() {
 		console.log(this.state);
 		return(
 			<>
 				<h2>Art Container</h2>
+				<NewArtForm />
 				<ArtList art={this.state.art}/>
 			</>
 		)

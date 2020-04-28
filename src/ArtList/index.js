@@ -4,7 +4,7 @@ import { Card, Image } from 'semantic-ui-react'
 export default function ArtList(props) {
 	const listedArt = props.art.map(art => {
 		return(
-			<Card>
+			<Card key={art.id}>
 				<Card.Content>
 					<Image size='tiny' src='https://cdn2.iconfinder.com/data/icons/artist-3/64/painting-art-canvas-painter-512.png' />
 					<Card.Header> {art.name} </Card.Header>
