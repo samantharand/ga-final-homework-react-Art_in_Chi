@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { Form, Button, Input } from 'semantic-ui-react'
 
-export default class NewArtForm extends Component {
-	constructor() {
-		super()
+
+export default class EditArtModal extends Component {
+	constructor(props){
+		super(props)
 
 		this.state = {
-			name: '',
-			artist: '',
-			year_made: '',
-			current_residence: ''
+			name: this.props.art.name,
+			artist: this.props.art.artist,
+			year_made: this.props.art.year_made,
+			current_residence: this.props.art.current_residence
 		}
 	}
 
@@ -21,20 +22,12 @@ export default class NewArtForm extends Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault()
-		this.props.createArt(this.state)
-
-		this.setState({
-			name: '',
-			artist: '',
-			year_made: '',
-			current_residence: ''	
-		})
+		this.props.updateArt(this.state)
 	}
 
 	render() {
 		return (
-			<>
-				<Form onSubmit={this.handleSubmit}>
+			<Form onSubmit={this.handleSubmit}>
 					<Form.Field required>
 						<label>title</label>
 						<Input 
@@ -75,9 +68,8 @@ export default class NewArtForm extends Component {
 							onChange={this.handleChange}
 						/>
 					</Form.Field>
-					<Button type='submit'>Add art to database</Button>
+					<Button type='submit'>Add Edits</Button>
 				</Form>
-			</>
 		)
 	}
 }

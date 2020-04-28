@@ -14,8 +14,13 @@ export default function ArtList(props) {
 				<Card.Content>
 					<Button 
 						basic
+						color="green"
+						onClick={ () => props.editArt(art.id) }
+					>edit</Button>
+					<Button 
+						basic
 						color="red"
-						onClick={() => props.deleteArt(art.id)}
+						onClick={ () => props.deleteArt(art.id) }
 					>delete</Button>
 				</Card.Content>
 			</Card>

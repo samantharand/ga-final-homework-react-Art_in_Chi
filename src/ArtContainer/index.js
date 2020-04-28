@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import ArtList from '../ArtList'
 import NewArtForm from '../NewArtForm'
+import EditArtModal from '../EditArtModal'
 
 export default class ArtContainer extends Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			art: []
+			art: [],
+			idOfArtToEdit: -1
 		}
 	}
 
@@ -85,13 +87,57 @@ export default class ArtContainer extends Component {
 		}
 	}
 
+	editArt = (idOfArtToEdit) => {
+		this.setState({
+			idOfArtToEdit: idOfArtToEdit
+		})
+	}
+
+	updateArt = async (updatedArtInfo) => {
+		try {
+			
+			const url = process.env.REACT_APP_API_URL + '/api/v1/art/' + this.state.idOfArtToEdit
+			const updateArtResponse = await fetch(url, {
+				method: 'PUT',
+				body: JSON.stringify(updatedArtInfo),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+
+			const updateArtJson = await updateArtResponse.json()
+			console.log(updateArtJson);
+
+			if(updateArtResponse.status == 200) {
+				const art = this.state.art
+				const indexOfArtBeingUpdated = art.findIndex(art => art.id == this.state.idOfArtToEdit)
+				art[indexOfArtBeingUpdated] = updateArtJson.data
+				this.setState({
+					art: art,
+					idOfArtToEdit: -1
+				})
+			}
+
+		} catch (error) {
+			console.error(error)
+		}
+	}
+
 	render() {
 		console.log(this.state);
 		return(
 			<>
 				<h2>Art Container</h2>
 				<NewArtForm createArt={this.createArt}/>
-				<ArtList art={this.state.art} deleteArt={this.deleteArt} />
+				<ArtList art={this.state.art} deleteArt={this.deleteArt} editArt={this.editArt}/>
+				{
+					this.state.idOfArtToEdit !== -1
+					&&
+					<EditArtModal 
+						art={this.state.art.find( art => art.id == this.state.idOfArtToEdit)}
+						updateArt={this.updateArt}
+					/>
+				}
 			</>
 		)
 
