@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Image } from 'semantic-ui-react'
+import { Card, Image, Button } from 'semantic-ui-react'
 
 export default function ArtList(props) {
 	const listedArt = props.art.map(art => {
@@ -10,6 +10,13 @@ export default function ArtList(props) {
 					<Card.Header> {art.name} </Card.Header>
 					<Card.Meta> {art.current_residence} </Card.Meta>
 					<Card.Description> {art.artist}, {art.year_made} </Card.Description>
+				</Card.Content>
+				<Card.Content>
+					<Button 
+						basic
+						color="red"
+						onClick={() => props.deleteArt(art.id)}
+					>delete</Button>
 				</Card.Content>
 			</Card>
 		)}

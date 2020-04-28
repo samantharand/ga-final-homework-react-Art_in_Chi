@@ -62,13 +62,36 @@ export default class ArtContainer extends Component {
 		}
 	}
 
+	deleteArt = async (idOfArtToDelete) => {
+		const url = process.env.REACT_APP_API_URL + '/api/v1/art/' + idOfArtToDelete
+		console.log(url);
+		try {
+			const deleteArtResponse = await fetch(url, {
+				method: 'DELETE',
+			})
+
+			const deleteArtJson = await deleteArtResponse.json()
+
+			if(deleteArtResponse.status === 200) {
+	
+				this.setState({
+					art: this.state.art.filter(art => art.id != idOfArtToDelete)
+				})
+
+				this.getArt()
+			}
+		} catch (error) {
+			console.error(error)
+		}
+	}
+
 	render() {
 		console.log(this.state);
 		return(
 			<>
 				<h2>Art Container</h2>
 				<NewArtForm createArt={this.createArt}/>
-				<ArtList art={this.state.art}/>
+				<ArtList art={this.state.art} deleteArt={this.deleteArt} />
 			</>
 		)
 
