@@ -26,6 +26,7 @@ export default class ArtContainer extends Component {
 			this.setState({
 				art: artJson.data
 			})
+
 		} catch (error) {
 			console.error(error)
 		}
@@ -44,6 +45,16 @@ export default class ArtContainer extends Component {
 			})
 			console.log('createArtResponse', createArtResponse);
 
+			const createArtJson = await createArtResponse.json()
+			// if(createArtResponse.status === 201) {
+			console.log(createArtJson.data);
+				const art = this.state.art
+				art.push(createArtJson.data)
+				this.setState({
+					art: art
+				})
+
+//			}
 
 		} catch (error) {
 			console.error(error)
@@ -55,7 +66,7 @@ export default class ArtContainer extends Component {
 		return(
 			<>
 				<h2>Art Container</h2>
-				<NewArtForm />
+				<NewArtForm createArt={this.createArt}/>
 				<ArtList art={this.state.art}/>
 			</>
 		)
