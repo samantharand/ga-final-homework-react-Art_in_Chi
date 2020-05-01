@@ -9,7 +9,7 @@ class LoginRegisterForm extends Component {
 		this.state ={
 			email: '',
 			password: '',
-			username: '',
+			name: '',
 			action: 'Login'
 		}
 	}
@@ -48,7 +48,7 @@ class LoginRegisterForm extends Component {
 		this.setState({
 			email: '',
 			password: '',
-			username: '',
+			name: '',
 			action: 'Login'	
 		})
 	}
@@ -64,12 +64,12 @@ class LoginRegisterForm extends Component {
 						this.state.action === "Register"
 						&&
 						<React.Fragment>
-							<Label>username:</Label>
+							<Label>name:</Label>
 							<Form.Input
-								type='username'
-								name='username'
-								placeholder='enter username'
-								value={this.state.username}
+								type='name'
+								name='name'
+								placeholder='enter name'
+								value={this.state.name}
 								onChange={this.handleChange}
 							/>
 						</React.Fragment>
