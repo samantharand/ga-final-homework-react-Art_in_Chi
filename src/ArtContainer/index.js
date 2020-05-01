@@ -128,19 +128,30 @@ export default class ArtContainer extends Component {
 		}
 	}
 
+	closeModal = () => {
+		this.setState({
+			idOfArtToEdit: -1
+		})
+	}
+
 	render() {
 		console.log(this.state);
 		return(
 			<>
 				<h2>Art Container</h2>
 				<NewArtForm createArt={this.createArt}/>
-				<ArtList art={this.state.art} deleteArt={this.deleteArt} editArt={this.editArt}/>
+				<ArtList 
+					art={this.state.art} 
+					deleteArt={this.deleteArt} 
+					editArt={this.editArt}
+				/>
 				{
 					this.state.idOfArtToEdit !== -1
 					&&
 					<EditArtModal 
 						art={this.state.art.find( art => art.id == this.state.idOfArtToEdit)}
 						updateArt={this.updateArt}
+						closeModal={this.closeModal}
 					/>
 				}
 			</>

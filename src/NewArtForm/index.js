@@ -8,8 +8,7 @@ export default class NewArtForm extends Component {
 		this.state = {
 			name: '',
 			artist: '',
-			year_made: '',
-			current_residence: ''
+			year_made: ''
 		}
 	}
 
@@ -62,16 +61,6 @@ export default class NewArtForm extends Component {
 							name='year_made' 
 							value={this.state.year_made} 
 							placeholder='YYYY' 
-							onChange={this.handleChange}
-						/>
-					</Form.Field>
-					<Form.Field required>
-						<label>current residence</label>
-						<Input 
-							type='text'
-							name='current_residence' 
-							value={this.state.current_residence} 
-							placeholder='where' 
 							onChange={this.handleChange}
 						/>
 					</Form.Field>
