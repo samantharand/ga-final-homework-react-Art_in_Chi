@@ -9,7 +9,19 @@ class LoginRegisterForm extends Component {
 		this.state ={
 			email: '',
 			password: '',
-			action: 'Register'
+			action: 'Login'
+		}
+	}
+
+	switchAction = () => {
+		if(this.state.action == "Login") {
+			this.setState({
+				action: "Register"
+			})
+		} else {
+			this.setState({
+				action: "Login"
+			})
 		}
 	}
 
@@ -47,7 +59,7 @@ class LoginRegisterForm extends Component {
 				
 				<React.Fragment>
 					{
-						this.state.action == "Register"
+						this.state.action === "Register"
 						&&
 						<React.Fragment>
 							<Label>username:</Label>
@@ -78,8 +90,14 @@ class LoginRegisterForm extends Component {
 					/>
 					<Button type='submit'> {this.state.action} </Button>
 				</React.Fragment>
-				
 			</Form>
+			{
+				this.state.action == "Login"
+				?
+				<p onClick={this.switchAction} className='fake-link'>Don't have an account? Make one here!</p>
+				:
+				<p onClick={this.switchAction} className='fake-link'>Already have an account? Log in here!</p>
+			}
 			</>
 		)
 	}
