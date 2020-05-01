@@ -40,6 +40,7 @@ class LoginRegisterForm extends Component {
 
 		} else {
 
+			console.log("this.state in LoginRegisterForm", this.state);
 			this.props.register(this.state)
 
 		}
