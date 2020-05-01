@@ -21,7 +21,9 @@ export default class ArtContainer extends Component {
 		try {
 			const url = process.env.REACT_APP_API_URL + '/api/v1/art/'
 			// console.log('url', url);
-			const artResponse = await fetch(url)
+			const artResponse = await fetch(url, {
+				credentials: 'include',
+			})
 			// console.log(artResponse);
 			const artJson = await artResponse.json()
 			// console.log(artJson);
@@ -39,6 +41,7 @@ export default class ArtContainer extends Component {
 			
 			const url = process.env.REACT_APP_API_URL + '/api/v1/art/'
 			const createArtResponse = await fetch(url, {
+				credentials: 'include',
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -69,6 +72,7 @@ export default class ArtContainer extends Component {
 		console.log(url);
 		try {
 			const deleteArtResponse = await fetch(url, {
+				credentials: 'include',
 				method: 'DELETE',
 			})
 
@@ -98,6 +102,7 @@ export default class ArtContainer extends Component {
 			
 			const url = process.env.REACT_APP_API_URL + '/api/v1/art/' + this.state.idOfArtToEdit
 			const updateArtResponse = await fetch(url, {
+				credentials: 'include',
 				method: 'PUT',
 				body: JSON.stringify(updatedArtInfo),
 				headers: {

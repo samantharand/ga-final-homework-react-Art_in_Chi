@@ -17,10 +17,12 @@ class App extends Component {
 	register = async (registerInfo) => {
 		console.log("register being claled from app.js");
 		const url = process.env.REACT_APP_API_URL + '/api/v1/museum/register'
-
+		console.log(url);
 		try {
+			console.log("TRY GETTING CALLED on line 22");
+
 			const registerResponse = await fetch(url, {
-				credentials: 'include',
+				// credentials: 'include',
 				method: 'POST',
 				body: JSON.stringify(registerInfo),
 				headers: {
@@ -30,7 +32,10 @@ class App extends Component {
 			
 			const registerJson = await registerResponse.json()
 
+			
+			console.log("REGISTERRESPONSE", registerResponse);
 			if(registerResponse.status == 401) {
+				console.log('ugh');
 				this.setState({
 					registerResponse: registerJson.message
 				})
@@ -49,6 +54,35 @@ class App extends Component {
 
 	login = async (loginInfo) => {
 		console.log('login called from app');
+		const url = process.env.REACT_APP_API_URL + '/api/v1/museum/login'
+		console.log(url);
+		try {
+			
+			const loginResponse = await fetch(url, {
+				// credentials: 'include',
+				method: 'POST',
+				body: JSON.stringify(loginInfo),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+
+			})
+
+			const loginJson = await loginResponse.json()
+
+			console.log(loginResponse);
+			if(loginResponse.status == 201) {
+				console.log("201");
+				this.setState({
+					loggedIn: true
+				})
+			}
+
+		} catch (error) {
+
+			console.error(error)
+
+		}
 	}
 
 	render() {

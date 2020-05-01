@@ -3,12 +3,13 @@ import { Card, Image, Button } from 'semantic-ui-react'
 
 export default function ArtList(props) {
 	const listedArt = props.art.map(art => {
+		console.log("ART", art);
 		return(
 			<Card key={art.id}>
 				<Card.Content>
 					<Image size='tiny' src='https://cdn2.iconfinder.com/data/icons/artist-3/64/painting-art-canvas-painter-512.png' />
 					<Card.Header> {art.name} </Card.Header>
-					<Card.Meta> {art.current_residence} </Card.Meta>
+					<Card.Meta> {art.current_residence.name} </Card.Meta>
 					<Card.Description> {art.artist}, {art.year_made} </Card.Description>
 				</Card.Content>
 				<Card.Content>

@@ -9,6 +9,7 @@ class LoginRegisterForm extends Component {
 		this.state ={
 			email: '',
 			password: '',
+			username: '',
 			action: 'Login'
 		}
 	}
@@ -33,9 +34,9 @@ class LoginRegisterForm extends Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault()
-		if(this.state.action == "Login") {
+		if(this.state.action === "Login") {
 
-			this.props.login()
+			this.props.login(this.state)
 
 		} else {
 
