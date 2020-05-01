@@ -22,17 +22,19 @@ class App extends Component {
 			console.log("TRY GETTING CALLED on line 22");
 
 			const registerResponse = await fetch(url, {
-				// credentials: 'include',
+				credentials: 'include',
 				method: 'POST',
 				body: JSON.stringify(registerInfo),
 				headers: {
 					'Content-Type': 'application/json'
-				}
+				} 
 			})
+
+			console.log("from line 33");
 			
 			const registerJson = await registerResponse.json()
 
-			
+
 			console.log("REGISTERRESPONSE", registerResponse);
 			if(registerResponse.status == 401) {
 				console.log('ugh');
@@ -45,7 +47,7 @@ class App extends Component {
 				})
 			}
 		} catch (error) {
-
+			console.warn('ERROR IN REG');
 			console.error(error)
 
 		}
@@ -59,12 +61,12 @@ class App extends Component {
 		try {
 			
 			const loginResponse = await fetch(url, {
-				// credentials: 'include',
+				credentials: 'include',
 				method: 'POST',
 				body: JSON.stringify(loginInfo),
 				headers: {
 					'Content-Type': 'application/json'
-				}
+				} 
 
 			})
 
@@ -72,14 +74,13 @@ class App extends Component {
 
 			console.log(loginResponse);
 			if(loginResponse.status == 201) {
-				console.log("201");
 				this.setState({
 					loggedIn: true
 				})
 			}
 
 		} catch (error) {
-
+			console.warn('ERROR IN LOGIN');
 			console.error(error)
 
 		}
