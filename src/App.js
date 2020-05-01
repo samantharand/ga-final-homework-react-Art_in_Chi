@@ -3,6 +3,7 @@ import 'semantic-ui-css/semantic.min.css'
 import './App.css';
 import ArtContainer from './ArtContainer'
 import LoginRegisterForm from './LoginRegisterForm'
+import Header from './Header'
 
 class App extends Component {
 	constructor() {
@@ -86,16 +87,40 @@ class App extends Component {
 		}
 	}
 
+	logout = async () => {
+		const url = process.env.REACT_APP_API_URL + '/api/v1/museum/logout'
+	
+		try {
+			
+			const logoutResponse = await fetch(url, {
+				credentials: 'include'
+			})
+
+			const logoutJson = await logoutResponse.json()
+			console.log(logoutJson, "LOGOUT JSON");
+			if(logoutJson.status === 200) {
+				this.setState({
+					loggedIn: false
+				})
+			}
+
+		} catch (error) {
+			console.error(error)
+		}
+
+	}
+
 	render() {
 
 	return (
 		<div className="App">
+			<Header logout={this.logout}/>
 		{
 			this.state.loggedIn
 			?
-			<ArtContainer />
+				<ArtContainer />
 			:
-			<LoginRegisterForm register={this.register} login={this.login}/>
+				<LoginRegisterForm register={this.register} login={this.login}/>
 		}
 		</div>
 	);
