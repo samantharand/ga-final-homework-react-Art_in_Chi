@@ -3,7 +3,13 @@ import '../index.css'
 
 function Header(props) {
 	return(
-		<span onClick={props.logout} className='fake-link'>LOGOUT</span>
+		<>
+		{
+			props.loggedIn
+			&&
+			<span onClick={props.logout} className='fake-link'>LOGOUT</span>
+		}
+		</>
 	)
 }
 

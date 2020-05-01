@@ -114,7 +114,7 @@ class App extends Component {
 
 	return (
 		<div className="App">
-			<Header logout={this.logout}/>
+			<Header loggedIn={this.state.loggedIn} logout={this.logout}/>
 		{
 			this.state.loggedIn
 			?
